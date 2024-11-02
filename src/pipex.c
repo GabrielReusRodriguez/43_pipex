@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:05:41 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/11/02 18:27:33 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/11/02 19:46:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include "ft_exec.h"
 #include "ft_fd.h"
 #include "ft_files.h"
-#include "ft_ptr.h"
-#include "ft_utils.h"
+//#include "ft_ptr.h"
+#include "ft_path.h"
 #include "ft_parent.h"
 #include "libft.h"
 
@@ -27,7 +27,7 @@ static void	ft_main_free_resources(int fdin, int fdout, t_env env, \
 				const char *file_output)
 {
 	ft_file_close(fdin, fdout);
-	ft_ptr_free_matrix(env.path);
+	ft_ptr_free_dchar_ptr(env.path);
 	if (file_output != NULL)
 		unlink(file_output);
 }

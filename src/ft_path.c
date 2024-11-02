@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: greus-ro <greus-ro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:24:18 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/03/16 22:26:35 by greus-ro         ###   ########.fr       */
+/*   Updated: 2024/11/02 19:42:11 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,3 @@ char	*ft_utils_which(char	**cmd_args, char **path)
 	}
 	return (cmd_path);
 }
-
-int	ft_strcmp(const char *str1, const char *str2)
-{
-	int	i;
-
-	i = 0;
-	while (str1[i] != '\0' && str2[i] != '\0' && str1[i] == str2[i])
-		i++;
-	return (str1[i] - str2[i]);
-}
-/*
-int ft_utils_str_get_bigger_len(const char *s1, const char *s2)
-{
-	int	bigger_len;
-
-	return (bigger_len);
-}
-*/

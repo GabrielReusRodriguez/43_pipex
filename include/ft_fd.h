@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:42:29 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/11/02 18:26:29 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/11/02 19:43:11 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define NO_FD -1
 
-# include "ft_utils.h"
+//# include "ft_utils.h"
 
 typedef struct s_fds
 {

@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/02 18:12:37 by gabriel           #+#    #+#              #
-#    Updated: 2024/11/02 18:56:06 by gabriel          ###   ########.fr        #
+#    Updated: 2024/11/02 19:45:51 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,22 +80,24 @@ DEPS = $(patsubst %.c,${OBJ_DIR}/%.d, ${SRC})
 all: ${PROJ_DIRS} compile_libs ${BIN_DIR}/${NAME}
 	
 compile_libs:
-	git submodule update --init --recursive
+	git submodule update --init --recursive --remote
 	@echo "\t${CYAN}Making libft...${RST}"
 	@make --no-print-directory all -C ${LIBFT_DIR} 
 	@echo "\t${CYAN}Making gnl...${RST}"
 	@make --no-print-directory all -C ${GNL_DIR} 
+	@echo "${CYAN}Making ${NAME}...${RST}"
 
 ${PROJ_DIRS}: 
 	@mkdir -p ${OBJ_DIR}
 	@mkdir -p ${BIN_DIR}
 
 ${BIN_DIR}/${NAME}: ${LIBFT_LIB} ${GNL_LIB} ${OBJS} Makefile
-	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -L ${LIBFT_DIR}/bin -L ${GNL_DIR}/bin -o ${BIN_DIR}/${NAME} ${OBJS} -lft -lgnl  
+	@echo "${CYAN}Linking ${NAME}...${RST}"
+	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} -L ${LIBFT_DIR}/bin -L ${GNL_DIR}/bin -o ${BIN_DIR}/${NAME} ${OBJS} -lft -lgnl  
 
 ${OBJ_DIR}/%.o : ${SRC_DIR}/%.c Makefile
-	@echo "Compiling..."
-	${CC} ${CFLAGS} ${SANITIZE_FLAGS} -I ${INC_DIR} -I ${LIBFT_DIR}/include -I ${GNL_DIR}/include -c $< -o $@
+	@echo "\t${YELLOW}Compiling ${RST} $<"
+	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} -I ${INC_DIR} -I ${LIBFT_DIR}/include -I ${GNL_DIR}/include -c $< -o $@
 
 clean:
 	@make --no-print-directory clean -C ${LIBFT_DIR}
@@ -106,6 +108,8 @@ fclean: clean
 	@make --no-print-directory fclean -C ${LIBFT_DIR}
 	@make --no-print-directory fclean -C ${GNL_DIR}
 	@rm -rf ${BIN_DIR}
+
+re: fclean all
 
 -include ${DEPS}
 
