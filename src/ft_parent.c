@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:45:42 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/11/02 18:29:46 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/11/03 22:02:55 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-#include "ft_utils.h"
+//#include "ft_utils.h"
 #include "ft_fd.h"
 #include "ft_error.h"
 

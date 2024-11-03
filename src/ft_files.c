@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:38:32 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/11/02 18:29:29 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/11/03 22:02:31 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ft_error.h"
 #include "ft_files.h"
-#include "ft_utils.h"
+//#include "ft_utils.h"
 #include "ft_fd.h"
 #include "libft.h"
 #include "ft_get_next_line.h"

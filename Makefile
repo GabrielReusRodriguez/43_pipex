@@ -6,7 +6,7 @@
 #    By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/02 18:12:37 by gabriel           #+#    #+#              #
-#    Updated: 2024/11/02 19:45:51 by gabriel          ###   ########.fr        #
+#    Updated: 2024/11/03 22:42:16 by gabriel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,7 @@ SRC = 	pipex.c				\
 		ft_fd.c				\
 		ft_files.c			\
 		ft_parent.c			\
-		ft_ptr.c			\
-		ft_utils.c			\
+		ft_path.c
 
 HDR =	ft_child.h			\
 		ft_environment.h	\
@@ -70,28 +69,32 @@ HDR =	ft_child.h			\
 		ft_fd.h				\
 		ft_files.h			\
 		ft_parent.h			\
-		ft_ptr.h			\
-		ft_utils.h
+		ft_path.h
 
 SRCS = $(patsubst %.c,${SRC_DIR}/%.c, ${SRC})
 OBJS = $(patsubst %.c,${OBJ_DIR}/%.o, ${SRC})
 DEPS = $(patsubst %.c,${OBJ_DIR}/%.d, ${SRC})
 
-all: ${PROJ_DIRS} compile_libs ${BIN_DIR}/${NAME}
-	
-compile_libs:
+#all: ${PROJ_DIRS} compile_libs ${BIN_DIR}/${NAME}
+
+all: ${PROJ_DIRS} ${BIN_DIR}/${NAME}
+
+update_libs:
 	git submodule update --init --recursive --remote
+
+${LIBFT_LIB}:
 	@echo "\t${CYAN}Making libft...${RST}"
 	@make --no-print-directory all -C ${LIBFT_DIR} 
+
+${GNL_LIB}:
 	@echo "\t${CYAN}Making gnl...${RST}"
 	@make --no-print-directory all -C ${GNL_DIR} 
-	@echo "${CYAN}Making ${NAME}...${RST}"
 
 ${PROJ_DIRS}: 
 	@mkdir -p ${OBJ_DIR}
 	@mkdir -p ${BIN_DIR}
 
-${BIN_DIR}/${NAME}: ${LIBFT_LIB} ${GNL_LIB} ${OBJS} Makefile
+${BIN_DIR}/${NAME}: update_libs ${LIBFT_LIB} ${GNL_LIB} ${OBJS} Makefile
 	@echo "${CYAN}Linking ${NAME}...${RST}"
 	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} -L ${LIBFT_DIR}/bin -L ${GNL_DIR}/bin -o ${BIN_DIR}/${NAME} ${OBJS} -lft -lgnl  
 
@@ -113,4 +116,4 @@ re: fclean all
 
 -include ${DEPS}
 
-.PHONY: all clean fclean re compile_libs
+.PHONY: all clean fclean re compile_libs update_libs

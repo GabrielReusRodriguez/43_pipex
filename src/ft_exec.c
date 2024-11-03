@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 22:02:17 by greus-ro          #+#    #+#             */
-/*   Updated: 2024/11/02 18:29:05 by gabriel          ###   ########.fr       */
+/*   Updated: 2024/11/03 22:01:36 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 #include "ft_files.h"
 #include "ft_error.h"
 #include "ft_parent.h"
-#include "ft_ptr.h"
+//#include "ft_ptr.h"
+#include "ft_path.h"
 #include "ft_child.h"
 
 /*
@@ -38,13 +39,14 @@ void	ft_exec_cmd(char *cmd, t_env env)
 	cmd_path = ft_utils_which(cmd_args, env.path);
 	if (cmd_path == NULL)
 	{
-		ft_ptr_free_matrix(cmd_args);
+		ft_ptr_free_dchar_ptr(cmd_args);
+//		ft_ptr_free_matrix(cmd_args);
 		ft_error_print_str_and_exit("Error command not found", EXIT_FAILURE);
 	}
 	if (execve(cmd_path, cmd_args, env.env) < 0)
 	{
 		free(cmd_path);
-		ft_ptr_free_matrix(cmd_args);
+		ft_ptr_free_dchar_ptr(cmd_args);
 		ft_error_print_str_and_exit("Error executing cmd", EXIT_FAILURE);
 	}
 }
